@@ -19,6 +19,15 @@
       >
         <mat-icon>remove_circle</mat-icon>
       </button>
+      <div [style] = "{'display':'in-linne'}">
+        <label [style] = "{'padding-right':'5px'}">Finished</label>
+        <input
+          type = "checkbox"
+          [checked] = "b.finished"
+          (click)="updateToReadingList(b)"
+        />
+        <p >{{b.finished == true ? b.finishedDate: null}}</p>
+      </div>
       
   </div>
 </ng-container>

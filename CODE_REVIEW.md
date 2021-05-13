@@ -68,3 +68,8 @@ All the tests are passed for components (book-search, reading-list and total cou
 
 - Added undo action with snackbar and wrote new e2e test for task
 
+## 7. Ability to mark a book as finished
+
+- Ability to mark a book as finished and wrote new e2e test for task
+
+

@@ -60,6 +60,12 @@ const readingListReducer = createReducer(
     
    readingListAdapter.addOne({ bookId: action.item.id, ...action.item }, state)
    ),
+
+   on(ReadingListActions.updateToReadingList, (state, action) => 
+   
+    
+    readingListAdapter.updateOne(action.payload, state)
+   )
 );
 
 export function reducer(state: State | undefined, action: Action) {

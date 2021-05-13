@@ -400,6 +400,11 @@ let ReadingListController = class ReadingListController {
             return yield this.readingList.removeBook(params.id);
         });
     }
+    updateToReadingList(payload) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return yield this.readingList.updateBook(payload);
+        });
+    }
 };
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Get"])('/reading-list/'),
@@ -421,6 +426,13 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [Object]),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:returntype", Promise)
 ], ReadingListController.prototype, "removeFromReadingList", null);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Put"])('/reading-list/:id/finished'),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Body"])()),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Function),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [Object]),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:returntype", Promise)
+], ReadingListController.prototype, "updateToReadingList", null);
 ReadingListController = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Controller"])(),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_b = typeof _reading_list_service__WEBPACK_IMPORTED_MODULE_3__["ReadingListService"] !== "undefined" && _reading_list_service__WEBPACK_IMPORTED_MODULE_3__["ReadingListService"]) === "function" ? _b : Object])
@@ -471,6 +483,19 @@ let ReadingListService = class ReadingListService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.storage.update(list => {
                 return list.filter(x => x.bookId !== id);
+            });
+        });
+    }
+    updateBook(payload) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.storage.update(list => {
+                list.map((x) => {
+                    if (x.bookId === payload.bookId) {
+                        x.finished = payload.finished;
+                        x.finishedDate = payload.finishedDate;
+                    }
+                });
+                return list;
             });
         });
     }

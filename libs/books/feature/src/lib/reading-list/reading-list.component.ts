@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getReadingList, removeFromReadingList, undoRemoveFromReadingList,} from '@tmo/books/data-access';
+import { getReadingList, removeFromReadingList, undoRemoveFromReadingList,updateToReadingList } from '@tmo/books/data-access';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -15,10 +15,20 @@ export class ReadingListComponent {
 
   removeFromReadingList(item) { 
    
-    let snackBarRef = this.snackBar.open('Book Removed', 'Undo');
+    const snackBarRef = this.snackBar.open('Book Removed', 'Undo');
     snackBarRef.onAction().subscribe(() => {
       this.store.dispatch(undoRemoveFromReadingList({item}));
     });
     this.store.dispatch(removeFromReadingList({ item }));
+  }
+
+  updateToReadingList(item){
+    
+    const payload = {
+      bookId: item.bookId, 
+      finished : true, 
+      finishedDate : new Date().toISOString()
+    }
+    this.store.dispatch(updateToReadingList({payload}));
   }
 }

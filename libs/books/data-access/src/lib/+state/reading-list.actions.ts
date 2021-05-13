@@ -50,3 +50,18 @@ export const undoAddToReadingList = createAction(
   '[Reading List API] Undo add from list',
   props<{ book: Book }>()
 );
+
+export const updateToReadingList = createAction(
+  '[Reading List API] Update to the list',
+  props<{ payload: any}>()
+);
+
+export const confirmedUpdatedToReadingList= createAction(
+  '[Reading List API] Update Confirm to the list',
+  props<{ payload: any }>()
+);
+
+export const failedUpdateToReadingList= createAction(
+  '[Reading List API] Update Failed to the list',
+  props<{ payload: any }>()
+);
