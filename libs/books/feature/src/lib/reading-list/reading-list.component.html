@@ -11,6 +11,7 @@
     </div>
     
       <button
+        data-testing = "remove-book"
         mat-icon-button
         color="warn"
         [attr.aria-label]="'Remove ' + b.title + ' from reading list'"
@@ -18,7 +19,7 @@
       >
         <mat-icon>remove_circle</mat-icon>
       </button>
-   
+      
   </div>
 </ng-container>
 <ng-template #empty>
