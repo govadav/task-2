@@ -16,7 +16,7 @@
       </div>
     </header>
     <main>
-      <tmo-book-search></tmo-book-search>
+      <tmo-book-search [statusToChild] = "statusFromParent" ></tmo-book-search>
     </main>
   </mat-drawer-content>
   <mat-drawer #drawer mode="over" position="end">
@@ -28,7 +28,7 @@
         </button>
       </h2>
       <div class="reading-list-content">
-        <tmo-reading-list></tmo-reading-list>
+        <tmo-reading-list  (selected) = "finishedStatus($event)"></tmo-reading-list>
       </div>
     </div>
   </mat-drawer>

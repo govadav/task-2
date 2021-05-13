@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   addToReadingList,
@@ -18,6 +18,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./book-search.component.scss']
 })
 export class BookSearchComponent implements OnInit {
+  @Input() statusToChild: object;
   books: ReadingListBook[];
   
   searchForm = this.fb.group({
