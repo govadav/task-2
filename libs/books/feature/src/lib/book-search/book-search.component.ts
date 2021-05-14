@@ -5,12 +5,11 @@ import {
   clearSearch,
   getAllBooks,
   ReadingListBook,
-  searchBooks,
-  undoAddToReadingList
+  searchBooks
 } from '@tmo/books/data-access';
 import { FormBuilder } from '@angular/forms';
 import { Book } from '@tmo/shared/models';
-import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'tmo-book-search',
@@ -27,8 +26,7 @@ export class BookSearchComponent implements OnInit {
 
   constructor(
     public readonly store: Store,
-    private readonly fb: FormBuilder,
-    private snackBar: MatSnackBar
+    private readonly fb: FormBuilder
   ) {}
 
   get searchTerm(): string {
@@ -38,14 +36,6 @@ export class BookSearchComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(getAllBooks).subscribe(books => {
       this.books = books;
-    });
-     
-    this.searchForm.get('term').valueChanges.subscribe(value => {
-      setTimeout(() => {
-        this.searchBooks(value);
-      }, 500);
-        
-      
     });
 
   }
@@ -57,27 +47,22 @@ export class BookSearchComponent implements OnInit {
   }
 
   addBookToReadingList(book: Book) {
-   
-    const snackBarRef = this.snackBar.open('Book Added', 'Undo');
-    snackBarRef.onAction().subscribe(() => {
-      this.store.dispatch(undoAddToReadingList({book}));
-    });
+  
     this.store.dispatch(addToReadingList({ book }));
   }
 
   searchExample() {
-   
-    this.searchBooks(this.searchForm.controls.term.setValue('javascript'));
+    this.searchForm.controls.term.setValue('javascript');
+    this.searchBooks();
   }
 
-  searchBooks(value){
-  
-    if (value) {
-        this.store.dispatch(searchBooks({ term: this.searchTerm }));
-      } else {
-        this.store.dispatch(clearSearch());
-      }
+  searchBooks() {
+    if (this.searchForm.value.term) {
+      this.store.dispatch(searchBooks({ term: this.searchTerm }));
+    } else {
+      this.store.dispatch(clearSearch());
     }
+  }
   
   
 }

@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getReadingList, removeFromReadingList, undoRemoveFromReadingList,updateToReadingList } from '@tmo/books/data-access';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { getReadingList, removeFromReadingList,updateToReadingList } from '@tmo/books/data-access';
+
 
 @Component({
   selector: 'tmo-reading-list',
@@ -12,14 +12,10 @@ export class ReadingListComponent {
   @Output() selected: EventEmitter<any> = new EventEmitter<any>();
   readingList$ = this.store.select(getReadingList);
 
-  constructor(public readonly store: Store,private snackBar: MatSnackBar) {}
+  constructor(public readonly store: Store) {}
 
   removeFromReadingList(item) { 
    
-    const snackBarRef = this.snackBar.open('Book Removed', 'Undo');
-    snackBarRef.onAction().subscribe(() => {
-      this.store.dispatch(undoRemoveFromReadingList({item}));
-    });
     this.store.dispatch(removeFromReadingList({ item }));
   }
 

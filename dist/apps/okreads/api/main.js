@@ -646,7 +646,7 @@ class StorageService {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/veenagovada/Desktop/task 2/apps/okreads/api/src/main.ts */"./apps/okreads/api/src/main.ts");
+module.exports = __webpack_require__(/*! /Users/veenagovada/Desktop/Practice/task 2/apps/okreads/api/src/main.ts */"./apps/okreads/api/src/main.ts");
 
 
 /***/ }),

@@ -12,7 +12,7 @@ describe('When: Use the search feature', () => {
   });
 
 
-  it('Then: I should see search results as I am typing', () => {
+  xit('Then: I should see search results as I am typing', () => {
     const term = cy.get('input[type="search"]').type('html');
     cy.request('http://localhost:4200/api/books/search?q='+ term).then(res => {
       expect(res.status).to.eq(200);
