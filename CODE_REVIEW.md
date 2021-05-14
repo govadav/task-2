@@ -59,12 +59,7 @@ All the tests are passed for components (book-search, reading-list and total cou
 - Written unit test cases for the actions dispatched for the components: book- search and reading-list
 
 
-
-## 5. Adding instant search
-    
-- Updated the code to provide instant-search results as the user is typing, controlled the API calls made with setTimeout(). Wrote test case apps/okreads-e2e/src/specs/search-books.spec.ts
-
-## 6. Undo add and remove from reading list
+## 5. Undo 'add and remove' from reading list
 
 - Added undo action with snackbar and wrote new e2e test for task
 

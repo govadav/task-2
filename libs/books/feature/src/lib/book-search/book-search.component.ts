@@ -38,14 +38,6 @@ export class BookSearchComponent implements OnInit {
     this.store.select(getAllBooks).subscribe(books => {
       this.books = books;
     });
-     
-    this.searchForm.get('term').valueChanges.subscribe(value => {
-      setTimeout(() => {
-        this.searchBooks(value);
-      }, 500);
-        
-      
-    });
 
   }
 
@@ -66,17 +58,18 @@ export class BookSearchComponent implements OnInit {
 
   searchExample() {
    
-    this.searchBooks(this.searchForm.controls.term.setValue('javascript'));
+    this.searchForm.controls.term.setValue('javascript');
+    this.searchBooks();
   }
 
-  searchBooks(value){
+  searchBooks(){
   
-    if (value) {
-        this.store.dispatch(searchBooks({ term: this.searchTerm }));
-      } else {
-        this.store.dispatch(clearSearch());
-      }
+    if (this.searchForm.value.term) {
+      this.store.dispatch(searchBooks({ term: this.searchTerm }));
+    } else {
+      this.store.dispatch(clearSearch());
     }
+  }
   
   
 }
