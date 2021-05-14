@@ -32,8 +32,7 @@ describe('Books Reducer', () => {
       expect(result.ids.length).toEqual(3);
     });
 
-    //this case is not handled by the reducer, so when we dispatch the action which is not 
-    //handled by the reducer, then the reducer returns the state by default with out any updates so loaded is flase and error is null
+ 
     it('failedAddToReadingList should undo book addition to the state', () => {
       const action = ReadingListActions.failedAddToReadingList({
       book: createBook('B')
@@ -44,8 +43,6 @@ describe('Books Reducer', () => {
      expect(result.error).toBeNull();
    });
 
-    //this case is not handled by the reducer, so when we dispatch the action which is not 
-    //handled by the reducer, then the reducer returns the state by default with out any updates so loaded is flase and error is null
     it('failedRemoveFromReadingList should undo book removal from the state', () => {
       const action = ReadingListActions.failedRemoveFromReadingList({
         item: createReadingListItem('C')
