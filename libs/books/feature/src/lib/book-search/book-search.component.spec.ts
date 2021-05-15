@@ -24,4 +24,10 @@ describe('ProductsListComponent', () => {
   it('should create', () => {
     expect(component).toBeDefined();
   });
+  it('should dispatch action to addbooks to reading list', () => {
+    const storeSpy = spyOn(component.store, 'dispatch').and.callThrough();
+    component.addBookToReadingList(component.books[0]);
+    fixture.detectChanges();
+    expect(storeSpy).toHaveBeenCalledTimes(1);
+  });
 });
